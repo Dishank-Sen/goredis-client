@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"testing"
+	"time"
 )
 
 func TestClient(t *testing.T){
@@ -19,9 +20,11 @@ func TestClient(t *testing.T){
 
 	fmt.Println("key set")
 
+	curr := time.Now()
 	val, err := client.Get(context.Background(), "name")
 	if err != nil{
 		panic(err)
 	}
+	fmt.Println("duration: ", time.Since(curr))
 	fmt.Printf("value: %s", val)
 }
